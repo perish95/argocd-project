@@ -57,6 +57,8 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/argocd-project:${{ github.run_number }}
           cache-from: type=gha
           cache-to: type=gha,mode=max  # GitHub Actions 캐시 백엔드 활용
+          provenance: false  # Docker Hub 카탈로그 인덱싱 누락 방지
+          sbom: false
 
   # === 2. CD Job (GitOps): Helm values.yaml 매니페스트 태그 업데이트 및 커밋/푸시 ===
   deploy:
